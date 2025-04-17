@@ -140,6 +140,7 @@ func convertSoftwareModelToDto(ctx *gin.Context, model *models.Software) *dto.So
 		LatestReleaseDate: util.FormatTimePtrCustom(model.LatestReleaseDate),
 		LatestDownloadURL: latestDownloadURL,
 		LatestVersion:     model.LatestVersion,
+		Versions:          []dto.VersionDto{},
 	}
 }
 

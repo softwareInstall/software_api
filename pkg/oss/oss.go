@@ -99,6 +99,9 @@ func (m *ManagerOss) SetDefaultBucket(bucketName string) error {
 
 // GetFileUrl 获取文件的零时下载地址
 func (m *ManagerOss) GetFileUrl(ctx context.Context, objectName string) (string, error) {
+	if objectName == "" {
+		return "", nil
+	}
 	fileUrl, err := m.client.PresignedGetObject(ctx, m.defaultBucket, objectName, setting.OssSetting.FileExpires*time.Minute, nil)
 	if err != nil {
 		log.Printf("生成预签名链接失败: %v", err)
